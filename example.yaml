@@ -1,0 +1,8 @@
+qy:
+    port: 8081
+    connStr: "host=localhost dbname=qydb user=dbuser password=123456 port=5432"
+    poolNum: 1
+    env: "development"
+
+
+

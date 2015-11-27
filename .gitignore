@@ -1,0 +1,9 @@
+.cabal-sandbox/
+*~
+cabal.sandbox.config
+dist/
+node_modules/
+build/
+npm-debug.log
+*.swp
+qy.yaml
