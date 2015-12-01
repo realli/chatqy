@@ -90,6 +90,8 @@ receiveLoop client@Client{..} conn = do
               if userInRoom
               then liftIO . atomically $ do
                   room <- getRoom r rmap
+                  isIn <- clientInRoom client room
+                  guard (not isIn)
                   addClientToRoom client room
                   writeTChan (roomChan room) $ JoinNotice r clientName
               else send conn $ ForbiddenJoinError "Not a Member"

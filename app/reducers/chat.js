@@ -50,6 +50,9 @@ export default function chatR(state=initialState, action) {
                 currentRoom: action.roomname
             });
         case SOCKET_CLOSED:
+            Object.keys(state.roomMap).map(function(roomName){
+                state.roomMap[roomName].joined = false;
+            });
             return Object.assign({}, state, {
                 connected: false,
                 socket: undefined

@@ -6,13 +6,13 @@ import { joinInRoom, touchAndJoinRoom } from '../actions/chat';
 class RoomOp extends Component {
     constructor() {
         super();
-        this.actions_1 = [
+        this.actions_create = [
             {label: "Cancel", onClick: this.closeDialog.bind(this, 'createDialog')},
-            {label: "Save", onClick: this.createRoom.bind(this) },
+            {label: "OK", onClick: this.createRoom.bind(this) },
         ];
-        this.actions_2 = [
+        this.actions_join = [
             {label: "Cancel", onClick: this.closeDialog.bind(this, 'joinDialog')},
-            {label: "Save", onClick: this.joinRoom.bind(this) },
+            {label: "OK", onClick: this.joinRoom.bind(this) },
         ];
     }
 
@@ -53,11 +53,11 @@ class RoomOp extends Component {
             <div>
             <Button label="Create Room" onClick={this.showDialog.bind(this, 'createDialog')} />
             <Button label="Join Room" onClick={this.showDialog.bind(this, 'joinDialog')} />
-            <Dialog ref='createDialog' title="Create Room" actions={this.actions_1}>
+            <Dialog ref='createDialog' title="Create Room" actions={this.actions_create}>
               <Input type="text" label="Room Name" ref="roomname" />
               <Input type="text" label="description" ref="desc" multiline={true}/>
             </Dialog>
-            <Dialog ref='joinDialog' title="Join Room" actions={this.actions_2}>
+            <Dialog ref='joinDialog' title="Join Room" actions={this.actions_join}>
               <Input type="text" label="Room Name" ref="joinName" />
             </Dialog>
             </div>

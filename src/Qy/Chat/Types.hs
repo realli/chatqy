@@ -94,7 +94,7 @@ instance FromJSON IncomingMsg where
         case typ of
           "join" -> UserJoin <$> v .: "roomname"
           "leave" -> UserLeave <$> v .: "roomname"
-          "msg" -> UserSendText <$> 
+          "msg" -> UserSendText <$>
                    v .: "roomname" <*>
                    v .: "payload"
           _ -> typeMismatch "invalid msg type" o

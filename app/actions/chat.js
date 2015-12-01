@@ -1,4 +1,3 @@
-
 import { errHappened } from '../actions'
 import { authed_fetch } from '../actions/auth'
 
@@ -56,7 +55,8 @@ export function initConnect() {
         socket.onopen = function() {
             socket.onmessage = function(e) {
                 let msg = JSON.parse(e.data);
-                dispatch(receice_msg(msg));
+                console.log(msg);
+                dispatch(receiveMsg(msg));
             }
             socket.send(access_token);
             dispatch(connectEstablished(socket));
@@ -64,7 +64,7 @@ export function initConnect() {
     }
 }
 
-function receice_msg(msg) {
+function receiveMsg(msg) {
     switch(msg.type) {
         case 'join':
             return {
