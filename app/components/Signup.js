@@ -1,7 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
 import {user_signup} from '../actions/auth';
-import { Input, Button } from 'react-toolbox';
 
 class UserSignup extends Component {
     render() {
@@ -15,12 +14,6 @@ class UserSignup extends Component {
                    <p>Sign Up with your email</p>
                  </legend>
 
-                 <Input type="text" label="UserName" icon="account-box" ref="username" required />
-                 <Input type="email" label="Email" icon="email" ref="email" required />
-                 <Input type="password" label="PassWord" icon="security" ref="password" required />
-
-                 <Button type="submit" loading={is_pending}
-                         label="SignUp" onClick={e => this.handleClick(e)} />
                </fieldset>
              </form>
             </div>

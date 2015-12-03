@@ -1,15 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
 import { sendMsg } from '../actions/chat';
-import Radium from 'radium';
 
-import { List,
-    ListItem,
-    ListSubHeader,
-    Input,
-    Button } from 'react-toolbox';
-
-@Radium
 class ChatRoom extends Component {
     render() {
         const { dispatch, currentRoom, roomMap } = this.props;
@@ -21,7 +13,7 @@ class ChatRoom extends Component {
                 <div className="pure-g">
                     <div className="pure-u-1">
                         <h1>{currentRoom}</h1>
-                        <ul style={[styles.ul]} ref="roomlist">
+                        <ul ref="roomlist">
                             {messages.map(function(msg, idx){
                                 switch(msg.type) {
                                     case 'join':
@@ -79,11 +71,5 @@ function select(state) {
     };
 }
 
-var styles = {
-    ul: {
-        height: '300px',
-        overflow: 'auto'
-    }
-};
 
 export default connect(select)(ChatRoom);

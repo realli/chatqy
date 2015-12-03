@@ -2,8 +2,6 @@ import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
 import { pushState } from 'redux-router';
 import {user_login} from '../actions/auth';
-import { Input, Button } from 'react-toolbox';
-
 
 class UserLogin extends Component {
     render() {
@@ -16,11 +14,7 @@ class UserLogin extends Component {
                  <legend>
                    <p>Login Please</p>
                  </legend>
-                 <Input type="text" label="UserName" icon="account-box" ref="username" required />
-                 <Input type="password" label="PassWord" icon="security" ref="password" required />
-                 <Button label="Login" type="submit"
-                         onClick={e => this.handleClick(e)}
-                         disabled={is_pending}/>
+
                </fieldset>
              </form>
             </div>

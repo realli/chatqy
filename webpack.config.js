@@ -9,6 +9,7 @@ var TARGET = process.env.npm_lifecycle_event;
 var ROOT_PATH = path.resolve(__dirname);
 var APP_PATH = path.resolve(ROOT_PATH, 'app');
 var BUILD_PATH = path.resolve(ROOT_PATH, 'build');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var common = {
     entry: APP_PATH,
@@ -22,8 +23,8 @@ var common = {
     module: {
         loaders: [
         {
-            test: /(\.css|\.scss)$/,
-            loader: 'style!css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass'
+            test: /\.css$/,
+            loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]')
         },
         {
             test: /\.jsx?$/,
@@ -37,8 +38,11 @@ var common = {
             title: 'ChatQY',
             template: 'assets/index.html',
             inject: 'body'
+        }),
+        new ExtractTextPlugin('app.css', {
+            allChunks: true
         })
-        ]
+    ]
 }
 
 if (TARGET === 'start' || !TARGET) {

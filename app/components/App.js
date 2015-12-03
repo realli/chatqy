@@ -3,7 +3,6 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import ErrorDialog from './ErrorDialog';
 import { user_logout } from '../actions/auth';
-import { Navigation, AppBar } from 'react-toolbox';
 import { pushState } from 'redux-router';
 
 class App extends Component {
@@ -21,12 +20,9 @@ class App extends Component {
         }
         return (
             <div>
-                <AppBar flat>
-                    <a href="/">Wat</a>
-                </AppBar>
                 <div className="pure-g">
                     <div className="pure-u-1-5">
-                        <Navigation type="vertical" actions={actions} />
+                        <div>TODO</div>
                     </div>
                     <div className="pure-u-4-5">
                         <ErrorDialog />

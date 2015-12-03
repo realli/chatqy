@@ -1,7 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
 import { pushState } from 'redux-router';
-import { List, ListItem, ListSubHeader } from 'react-toolbox';
 import { getRoomList, initConnect, enterRoom } from '../actions/chat';
 import RoomOp from './RoomOp';
 import ChatRoom from './ChatRoom';
@@ -22,17 +21,7 @@ class ChatRooms extends Component {
               </div>
               <div className="pure-u-2-5">
                 <RoomOp />
-                <List selectable ripple>
-                  <ListSubHeader caption="Rooms" />
-                  {lst.map(e => 
-                      <ListItem key={e.name}
-                                caption={e.name}
-                                legend={e.description}
-                                leftIcon="group-work"
-                                onClick={() => this.handleClick(e.name)}
-                            />
-                   )}
-                </List>
+                <div>TODO</div>
               </div>
             </div>
         );
