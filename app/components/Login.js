@@ -2,23 +2,32 @@ import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
 import { pushState } from 'redux-router';
 import {user_login} from '../actions/auth';
+import styles from './Form.css';
+import CSSModules from 'react-css-modules';
 
+@CSSModules(styles)
 class UserLogin extends Component {
     render() {
         const {dispatch, is_login, is_pending, token, user} = this.props;
         return (
-            <div className="pure-g">
-            <div className="pure-u">
-             <form>
+             <form styleName="form">
                <fieldset>
-                 <legend>
-                   <p>Login Please</p>
-                 </legend>
+                 <legend>Login</legend>
+                 <div styleName="field">
+                   <label htmlFor="username">Username</label>
+                   <input id="username" type="text" ref="username" styleName="input" />
+                 </div>
+                 <div styleName="field">
+                   <label htmlFor="password">Password</label>
+                   <input id="password" type="password" ref="password" styleName="input" />
+                 </div>
 
+                 <button type="submit"
+                         styleName="formButton"
+                         disabled={is_pending}
+                         onClick={e => this.handleClick(e)}>Login</button>
                </fieldset>
              </form>
-            </div>
-            </div>
         );
     }
 

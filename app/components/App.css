@@ -1,0 +1,29 @@
+.wrap {
+    composes: pure-g from '../pure.css';
+    width: 960px;
+    margin: auto;
+}
+
+.menu {
+    composes: pure-menu from '../pure.css';
+    composes: pure-menu-horizontal from '../pure.css';
+    composes: pure-u-1 from '../pure.css';
+}
+
+.menu-heading {
+    composes: pure-menu-heading from '../pure.css';
+    padding-left: 0;
+}
+
+.menu-list {
+    composes: pure-menu-list from '../pure.css';
+    float: right;
+}
+
+.menu-item {
+    composes: pure-menu-item from '../pure.css';
+}
+
+.menu-link {
+    composes: pure-menu-link from '../pure.css';
+}

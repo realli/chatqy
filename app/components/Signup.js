@@ -1,23 +1,33 @@
 import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
 import {user_signup} from '../actions/auth';
+import styles from './Form.css';
+import CSSModules from 'react-css-modules';
 
+
+@CSSModules(styles)
 class UserSignup extends Component {
     render() {
         const {dispatch, is_login, is_pending} = this.props;
         return (
-            <div className="pure-g">
-            <div className="pure-u">
-             <form>
+             <form styleName="form">
                <fieldset>
-                 <legend>
-                   <p>Sign Up with your email</p>
-                 </legend>
+                 <legend>Signup</legend>
+                 <div styleName="field">
+                   <label htmlFor="username">Username</label>
+                   <input id="username" type="text" ref="username" styleName="input" />
+                 </div>
+                 <div styleName="field">
+                   <label htmlFor="password">Password</label>
+                   <input id="password" type="password" ref="password" styleName="input" />
+                 </div>
 
+                 <button type="submit"
+                         styleName="formButton"
+                         disabled={is_pending}
+                         onClick={e => this.handleClick(e)}>Login</button>
                </fieldset>
              </form>
-            </div>
-            </div>
         );
     }
 
@@ -36,7 +46,7 @@ class UserSignup extends Component {
 
         const username = (name_node.getValue() || '').trim();
         const password = (pass_node.getValue() || '').trim();
-        const email = (email_node.getValue() || '').trim();
+        const email = (email_node.getValue() || 'NoNeed').trim();
 
         const { dispatch } = this.props;
         dispatch(user_signup(username, password, email));

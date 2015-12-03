@@ -1,0 +1,23 @@
+.form {
+    composes : pure-u-2-5 from '../pure.css';
+    composes: pure-form from '../pure.css';
+    composes: pure-form-stacked from '../pure.css';
+
+    margin: 30px auto;
+}
+
+.field {
+    composes: pure-u-1 from '../pure.css';
+}
+
+.input {
+    composes: pure-u-23-24 from '../pure.css';
+}
+
+.formButton {
+    composes: pure-button from '../pure.css';
+    composes: pure-button-primary from '../pure.css';
+    border-radius: 4px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    margin-top: 4px;
+}

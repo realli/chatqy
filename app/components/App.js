@@ -4,31 +4,42 @@ import { connect } from 'react-redux';
 import ErrorDialog from './ErrorDialog';
 import { user_logout } from '../actions/auth';
 import { pushState } from 'redux-router';
+import CSSModules from 'react-css-modules';
+import styles from './App.css';
 
+@CSSModules(styles)
 class App extends Component {
     render () {
         const { dispatch, is_login } = this.props;
-        let actions = [];
+        let menuItems = [];
         if(!is_login) {
-            actions.push({label: "Login",
-                       onClick: function(){dispatch(pushState({}, '/login'))}},
-                       {label: "SignUp",
-                           onClick: function(){dispatch(pushState({}, '/signup'))}});
+            menuItems.push(
+                <li styleName="menu-item" key="login">
+                  <Link to="/login" styleName="menu-link">Login</Link>
+                </li>,
+                <li styleName="menu-item" key="signup">
+                  <Link to="/signup" styleName="menu-link">SignUp</Link>
+                </li>
+            );
         } else {
-            actions.push({label: "Logout",
-                       onClick: function(){dispatch(user_logout())}});
+            menuItems.push(
+                <li styleName="menu-item" key="logout">
+                <Link to="/" styleName="menu-link" onClick={() => dispatch(user_logout())}>
+                  Logout
+                </Link>
+                </li>
+            );
         }
+
         return (
-            <div>
-                <div className="pure-g">
-                    <div className="pure-u-1-5">
-                        <div>TODO</div>
-                    </div>
-                    <div className="pure-u-4-5">
-                        <ErrorDialog />
-                        {this.props.children} 
-                    </div>
+            <div styleName="wrap">
+                <div styleName="menu">
+                    <Link styleName="menu-heading" to="/">Wat</Link>
+                    <ul styleName="menu-list">
+                      {menuItems.map(it => it)}
+                    </ul>
                 </div>
+                {this.props.children} 
             </div>
         );
     }

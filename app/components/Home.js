@@ -2,19 +2,21 @@ import React, {Component, PropTypes} from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import ChatRooms from './ChatRooms';
+import styles from './Home.css';
+import CSSModules from 'react-css-modules';
 
+
+@CSSModules(styles)
 class Home extends Component {
     render () {
         const {is_login, username} = this.props;
         if(is_login) {
             return (
-                <div className="pure-u-1">
                 <ChatRooms />
-                </div>
             );
         } else {
             return (
-                <div className="pure-u">
+                <div styleName="home-main">
                   <h1>A Very Simple Chat Server</h1>
                   <p>This is a chat room web app written using haskell servant, websockets and react.js.</p>
                   <p>Sign up -> Join some room and chat</p>

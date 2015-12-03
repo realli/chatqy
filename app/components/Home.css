@@ -1,0 +1,3 @@
+.home-main {
+    composes: pure-u-1 from '../pure.css';
+}
