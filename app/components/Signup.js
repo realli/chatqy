@@ -40,13 +40,12 @@ class UserSignup extends Component {
 
     handleClick(e) {
         e.preventDefault();
-        const name_node = this.refs.username;
-        const pass_node = this.refs.password;
-        const email_node = this.refs.email;
+        const nameNode = this.refs.username;
+        const passNode = this.refs.password;
 
-        const username = (name_node.getValue() || '').trim();
-        const password = (pass_node.getValue() || '').trim();
-        const email = (email_node.getValue() || 'NoNeed').trim();
+        const username = (nameNode.value || '').trim();
+        const password = (passNode.value || '').trim();
+        const email = 'NoNeed';
 
         const { dispatch } = this.props;
         dispatch(user_signup(username, password, email));

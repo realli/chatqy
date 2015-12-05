@@ -1,0 +1,51 @@
+.wrap {
+    composes: pure-u-1 from '../pure.css';
+    margin-top: 30px;
+}
+
+.room-list {
+    composes: pure-u-1-4 from '../pure.css';
+}
+
+.room-list ul {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-left: 0px;
+}
+
+.room-list-item {
+    padding-left: 0px;
+    list-style: none;
+}
+
+.room-item-head {
+    margin: 0;
+}
+.room-item-content {
+    margin: 0;
+}
+
+.main {
+    composes: pure-u-7-12 from '../pure.css';
+}
+
+.room-action {
+    composes: pure-u-1 from '../pure.css';
+}
+
+.room-content {
+    composes: pure-u-1 from '../pure.css';
+}
+
+.room-content h1 {
+    margin: 0;
+}
+
+.room-content ul {
+    height: 350px;
+    padding-left: 0;
+}
+
+.room-content li {
+    list-style: none;
+}

@@ -4,7 +4,10 @@ import { pushState } from 'redux-router';
 import { getRoomList, initConnect, enterRoom } from '../actions/chat';
 import RoomOp from './RoomOp';
 import ChatRoom from './ChatRoom';
+import styles from './ChatRoom.css';
+import CSSModules from 'react-css-modules';
 
+@CSSModules(styles)
 class ChatRooms extends Component {
     render() {
         const { roomMap } = this.props;
@@ -15,14 +18,22 @@ class ChatRooms extends Component {
         }
 
         return (
-            <div className="pure-g">
-              <div className="pure-u-3-5">
-                  <ChatRoom />
-              </div>
-              <div className="pure-u-2-5">
-                <RoomOp />
-                <div>TODO</div>
-              </div>
+            <div styleName="wrap">
+                <div styleName="room-list">
+                    <RoomOp />
+                    <ul>
+                        {lst.map(function(room, idx){
+                            return (
+                                <li styleName="room-list-item" key={idx} onClick={() => this.handleClick(room.name)}>
+                                    <h3 styleName="room-item-head">{room.name}</h3>
+                                    <p styleName="room-item-content">{room.description}</p>
+                                </li>);
+                        }, this)}
+                    </ul>
+                </div>
+                <div styleName="main">
+                    <ChatRoom />
+                </div>
             </div>
         );
     }

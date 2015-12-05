@@ -1,7 +1,10 @@
 import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
 import { sendMsg } from '../actions/chat';
+import styles from './ChatRoom.css';
+import CSSModules from 'react-css-modules';
 
+@CSSModules(styles)
 class ChatRoom extends Component {
     render() {
         const { dispatch, currentRoom, roomMap } = this.props;
@@ -10,37 +13,35 @@ class ChatRoom extends Component {
         if(currentRoom) {
             messages = roomMap[currentRoom].messages;
             return (
-                <div className="pure-g">
-                    <div className="pure-u-1">
-                        <h1>{currentRoom}</h1>
-                        <ul ref="roomlist">
-                            {messages.map(function(msg, idx){
-                                switch(msg.type) {
-                                    case 'join':
-                                        return <li key={idx}>{msg.username} JOINED {msg.roomname}</li>;
-                                    case 'leave':
-                                        return <li key={idx}>{msg.username} LEAVED {msg.roomname}</li>;
-                                    case 'msg':
-                                        return <li key={idx}>{msg.username}: {msg.payload}</li>;
-                                    default:
-                                        break
-                                }
-                            })}
-                        </ul>
-                    </div>
-                    <div className="pure-u-1">
-                        <Input type="text" ref="sendBox" />
-                        <Button label="Send" onClick={() => this.send()}/>
+                <div styleName="room-content">
+                    <h1>{currentRoom}</h1>
+                    <ul ref="msglist">
+                        {messages.map(function(msg, idx){
+                            switch(msg.type) {
+                                case 'join':
+                                    return <li key={idx}>{msg.username} JOINED {msg.roomname}</li>;
+                                case 'leave':
+                                    return <li key={idx}>{msg.username} LEAVED {msg.roomname}</li>;
+                                case 'msg':
+                                    return <li key={idx}>{msg.username}: {msg.payload}</li>;
+                                default:
+                                    break
+                            }
+                        })}
+                    </ul>
+                    <div styleName="room-action">
+                        <input type="text" ref="sendBox" />
+                        <button onClick={() => this.send()}>Send</button>
                     </div>
                 </div>
             );
         } else {
-            return <div>Hello</div>;
+            return <div>Select A room or create one to chat</div>;
         }
     }
 
     componentDidUpdate() {
-        let ul = this.refs.roomlist;
+        let ul = this.refs.msglist;
         if(ul != undefined){
             ul.scrollTop = ul.scrollHeight;
         }
@@ -49,10 +50,10 @@ class ChatRoom extends Component {
     send() {
         const { dispatch, currentRoom } = this.props;
         const textNode = this.refs.sendBox;
-        let text = (textNode.getValue() || '').trim();
-        textNode.setValue('');
+        let text = (textNode.value || '').trim();
+        textNode.value = '';
 
-        if (currentRoom == null) {
+        if (currentRoom == null || !text) {
             return;
         }
         dispatch(sendMsg(currentRoom, text));

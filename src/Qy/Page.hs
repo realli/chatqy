@@ -11,7 +11,7 @@ page = docTypeHtml $ do
     H.head $ do
         H.title  "ChatQy"
         H.meta ! charset "UTF-8"
-        H.link ! rel "stylesheet" ! href "http://yui.yahooapis.com/pure/0.6.0/pure-min.css"
+        H.link ! rel "stylesheet" ! href "/static/app.css"
     H.body $ do
         H.script ! src "/static/bundle.js" $ ""
 

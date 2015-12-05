@@ -42,8 +42,9 @@ class UserLogin extends Component {
         e.preventDefault();
         const nameNode = this.refs.username;
         const passNode = this.refs.password;
-        const username = (nameNode.getValue() || '').trim();
-        const password = (passNode.getValue() || '').trim();
+
+        const username = (nameNode.value || '').trim();
+        const password = (passNode.value || '').trim();
 
         const { dispatch } = this.props;
 
