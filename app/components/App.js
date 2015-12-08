@@ -32,6 +32,7 @@ class App extends Component {
         }
 
         return (
+            <div>
             <div styleName="wrap">
                 <div styleName="menu">
                     <Link styleName="menu-heading" to="/">Wat</Link>
@@ -40,6 +41,8 @@ class App extends Component {
                     </ul>
                 </div>
                 {this.props.children} 
+            </div>
+              <ErrorDialog />
             </div>
         );
     }

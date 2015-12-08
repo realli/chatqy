@@ -1,0 +1,20 @@
+.wrap {
+    //composes: pure-u from '../pure.css';
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.dialog {
+    margin: auto;
+    width: 60%;
+    text-align: center;
+    padding: 2px;
+    background: #ff5555;
+    border-radius: 5px 5px 1px 1px;
+}
+
+.dialog p {
+    color: white;
+}
+
