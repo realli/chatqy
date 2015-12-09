@@ -87,8 +87,27 @@
     width: 50%;
     height: 50%;
     padding: 16px;
-    border: 16px solid orange;
     background-color: white;
     z-index:1002;
     overflow: auto;
+    border-radius: 10px;
+    -moz-box-shadow: 1px 1px 5px #888888; /* 老的 Firefox */
+    box-shadow: 1px 1px 5px #888888;
+}
+
+.roomop-form {
+    composes: pure-form from '../pure.css';
+    composes: pure-form-stacked from '../pure.css';
+}
+
+.roomop-form-button {
+    composes: roomop-button;
+    width: 80px;
+    margin-right: 10px;
+}
+
+.roomop-form-cancel-button {
+    composes: roomop-form-button;
+    background: rgb(66, 184, 221);
+
 }

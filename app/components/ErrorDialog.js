@@ -25,7 +25,6 @@ class ErrorDialog extends Component {
             this.state.timer = setTimeout(function(){dispatch(deleteError())}, 3000);
         } else if(nextProps.errorMessages.length === 0){
             // hide this dialog
-            console.log("Got Here?");
             this.setState({hidden: true});
         }
     }
