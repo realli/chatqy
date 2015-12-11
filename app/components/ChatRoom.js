@@ -19,20 +19,26 @@ class ChatRoom extends Component {
                         {messages.map(function(msg, idx){
                             switch(msg.type) {
                                 case 'join':
-                                    return <li key={idx}>{msg.username} JOINED {msg.roomname}</li>;
+                                    return <li key={idx} styleName="event-msg">{msg.username} JOINED {msg.roomname}</li>;
                                 case 'leave':
-                                    return <li key={idx}>{msg.username} LEAVED {msg.roomname}</li>;
+                                    return <li key={idx} styleName="event-msg">{msg.username} LEAVED {msg.roomname}</li>;
                                 case 'msg':
-                                    return <li key={idx}>{msg.username}: {msg.payload}</li>;
+                                    return (<li key={idx} styleName="normal-msg">
+                                            <span styleName="msg-sender">{msg.username}</span>
+                                            <span styleName="msg-content">{msg.payload}</span>
+                                            </li>);
                                 default:
                                     break
                             }
                         })}
                     </ul>
-                    <div styleName="room-action">
+                    <form styleName="room-action">
                         <input type="text" ref="sendBox" />
-                        <button onClick={() => this.send()}>Send</button>
-                    </div>
+                        <button styleName="room-action-button"
+                                onClick={(e) => {e.preventDefault();
+                                                 this.send()}
+                                }>Send</button>
+                    </form>
                 </div>
             );
         } else {
