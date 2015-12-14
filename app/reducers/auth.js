@@ -6,7 +6,8 @@ import {ERR_HAPPENED,
     USER_LOGIN_SUCCESS,
     USER_SIGNUP,
     USER_SIGNUP_FAILED,
-    USER_SIGNUP_SUCCESS} from '../actions/auth';
+    USER_SIGNUP_SUCCESS,
+    FORCE_LOGOUT } from '../actions/auth';
 
 const initialState = {
     is_login: false,
@@ -55,6 +56,7 @@ function authR(state=initialState, action) {
                 expire_at: current
             });
         case USER_LOGOUT:
+        case FORCE_LOGOUT:
             return Object.assign({}, state, {
                 is_login: false,
                 login_pending: false,

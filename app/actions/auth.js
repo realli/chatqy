@@ -10,6 +10,8 @@ export const USER_SIGNUP_FAILED = "USER_SIGNUP_FAILED";
 export const USER_SIGNUP_SUCCESS = "USER_SIGNUP_SUCCESS";
 export const USER_LOGOUT = "USER_LOGOUT";
 
+export const FORCE_LOGOUT = "FORCE_LOGOUT";
+
 
 function login_sending(username) {
     return {
@@ -159,6 +161,12 @@ function refreshToken() {
     }
 }
 
+function forceLogout() {
+    return {
+        type: FORCE_LOGOUT
+    };
+}
+
 export function authed_fetch(url, options) {
     return function(dispatch, getState) {
         const { auth } = getState();
@@ -186,7 +194,10 @@ export function authed_fetch(url, options) {
                             'Authorization': 'Bearer ' + token
                         }, options.headers || {})
                     });
-                    return fetch(url, new_options);
+                    return fetch(url, new_options).catch(e => {
+                        console.error(e);
+                        return Promise.reject(new Error("Refresh token expired"));
+                    });
                 }).then(responseHandler);
             } else {
                 return Promise.reject(e);
@@ -194,6 +205,7 @@ export function authed_fetch(url, options) {
         }).catch(e => {
             console.log(e.message);
             dispatch(errHappened(e.message));
+            dispatch(forceLogout());
             return Promise.reject(e);
         });
     }
