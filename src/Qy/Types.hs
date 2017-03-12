@@ -7,10 +7,10 @@ import Data.Text (Text)
 
 import Qy.Config
 
-type AppM = ReaderT Config (EitherT ServantErr IO)
+type AppM = ReaderT Config Handler
 
 type UserName = Text
 
-toAppM :: EitherT ServantErr IO a -> AppM a
+toAppM :: Handler a -> AppM a
 toAppM = lift
 

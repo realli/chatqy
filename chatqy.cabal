@@ -73,12 +73,11 @@ executable chatqy
                     , http-types
                     , js-jquery
                     , random
-                    , servant == 0.4.*
-                    , servant-docs == 0.4.*
-                    , servant-jquery == 0.4.*
+                    , servant
+                    , servant-docs
                     , servant-blaze
                     , blaze-html
-                    , servant-server == 0.4.*
+                    , servant-server
                     , text
                     , time
                     , transformers

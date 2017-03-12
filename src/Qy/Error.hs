@@ -13,4 +13,4 @@ instance ToServantErr ServantErr where
     toServantErr = id
 
 raiseHTTPError :: (ToServantErr e) => e -> AppM a
-raiseHTTPError = lift . left . toServantErr
+raiseHTTPError = lift . throwError . toServantErr

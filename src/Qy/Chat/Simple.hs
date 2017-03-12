@@ -17,7 +17,6 @@ import Web.JWT (iss, stringOrURIToText)
 
 import qualified Network.WebSockets as WS
 import Network.Wai.Handler.WebSockets (websocketsOr)
-import Servant (fromText)
 
 import Qy.User (Token(..), getClaimSetFromToken, checkExpValid)
 import Qy.Chat.Internal

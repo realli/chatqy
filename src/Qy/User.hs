@@ -85,12 +85,13 @@ instance ToJSON ReturnToken
 
 newtype Token = Token Text
 
-instance FromText Token where
-    fromText t = let striped = T.strip t
-                     ls = T.words striped
-                 in case ls of
-                      "Bearer":r:_ -> Just $ Token r
-                      _ -> Nothing
+instance FromHttpApiData Token where
+    parseQueryParam t =
+        let striped = T.strip t
+            ls = T.words striped
+        in case ls of
+                "Bearer":r:_ -> Right $ Token r
+                _ -> Left "Invalid Token"
 
 
 loginServer :: ServerT UserAPI AppM

@@ -47,7 +47,7 @@ readerServer cfg = enter (readerToEither cfg) server
                    :<|> serveDirectory "build"
                    :<|> egServer
 
-readerToEither :: Config -> AppM :~> EitherT ServantErr IO
+readerToEither :: Config -> AppM :~> Handler
 readerToEither cfg = Nat $ \x -> runReaderT x cfg
 
 api :: Proxy API
